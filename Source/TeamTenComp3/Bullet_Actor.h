@@ -27,6 +27,9 @@ public:
 		class UStaticMeshComponent* BulletMesh;
 
 
+	UFUNCTION()
+		void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BulletLocation")
 	FVector NewLocation;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="BulletCharacteristic")

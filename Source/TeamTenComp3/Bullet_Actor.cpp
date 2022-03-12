@@ -17,8 +17,9 @@ ABullet_Actor::ABullet_Actor()
 		BulletMesh->SetStaticMesh(MeshComponent.Object);
 	}
 
-
 	NewLocation = GetActorLocation();
+
+	BulletMesh->OnComponentBeginOverlap.AddDynamic(this, &ABullet_Actor::OnOverlap);
 }
 
 // Called when the game starts or when spawned
@@ -39,5 +40,9 @@ void ABullet_Actor::Tick(float DeltaTime)
 	if (LivingTimeOfBullets > EndOfLiving || LivingTimeOfBullets == EndOfLiving) {
 		this->Destroy();
 	}
+}
+
+void ABullet_Actor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
 }
 
