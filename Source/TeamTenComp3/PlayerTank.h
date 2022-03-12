@@ -45,6 +45,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Movement")
 	float Speed = 0;
 
+private:
 
+	
 	
 };
