@@ -31,9 +31,13 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Sphere")
 	class USphereComponent* Sphere{ nullptr };
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
+	class UStaticMeshComponent* Mesh{ nullptr };
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "CameraBoom")
+	class USpringArmComponent* CameraBoom{ nullptr };
+
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
 	class UCameraComponent* Camera{ nullptr };
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "CameraBoom")
-	class USpringArmComponent* CameraBoom{ nullptr };
 };
