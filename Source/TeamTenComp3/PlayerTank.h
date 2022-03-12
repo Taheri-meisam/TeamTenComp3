@@ -43,10 +43,22 @@ public:
 	//movement
 	//speed
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Movement")
-	float Speed = 0;
+	float Speed;
 
+	//movement component
+	UPROPERTY(VisibleAnywhere, Category = "Movement")
+	class UPawnMovementComponent* MoveComp{ nullptr };
+
+//	virtual class UPawnMovementComponent* GetMoveComp();
+	
 private:
 
+	//Movement
+	//direction functions
+	void MoveForward(float Value);
+	void MoveRight(float Value);
+	//current speed
+	FVector CurrentVelocity;
 	
 	
 };
