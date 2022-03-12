@@ -26,4 +26,14 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+public:
+
+	UPROPERTY(VisibleAnywhere, Category = "Sphere")
+	class USphereComponent* Sphere{ nullptr };
+
+	UPROPERTY(VisibleAnywhere, Category = "Camera")
+	class UCameraComponent* Camera{ nullptr };
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "CameraBoom")
+	class USpringArmComponent* CameraBoom{ nullptr };
 };
