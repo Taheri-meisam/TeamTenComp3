@@ -23,7 +23,18 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BulletMesh")
+		class UStaticMeshComponent* BulletMesh;
 
+
+	FVector NewLocation;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="BulletCharacteristic")
+	float LivingTimeOfBullets = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BulletCharacteristic")
+	float BulletSpeed = 10;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BulletCharacteristic")
 	float Bullets = 10;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BulletCharacteristic")
+		float EndOfLiving = 10;
 };
