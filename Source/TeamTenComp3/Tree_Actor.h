@@ -27,8 +27,11 @@ public:
 		class UStaticMeshComponent* TreeMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CollisionComponent")
 		class UShapeComponent* CollisionBoxTree;
+	UPROPERTY(EditAnywhere, Category = "Bullet_Actors")
+		TSubclassOf<AActor> Bullets;
 	UFUNCTION()
 		void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
 
 	FVector ActorLocation;
 };
