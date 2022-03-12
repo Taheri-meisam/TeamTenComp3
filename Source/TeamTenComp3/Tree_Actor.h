@@ -25,5 +25,10 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "TreeMesh")
 		class UStaticMeshComponent* TreeMesh;
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CollisionComponent")
+		class UShapeComponent* CollisionBoxTree;
+	UFUNCTION()
+		void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	FVector ActorLocation;
 };

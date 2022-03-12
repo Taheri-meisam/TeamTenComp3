@@ -2,6 +2,9 @@
 
 
 #include "Tree_Actor.h"
+#include "Components/BoxComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "Bullet_Actor.h"
 
 // Sets default values
 ATree_Actor::ATree_Actor()
@@ -14,13 +17,15 @@ ATree_Actor::ATree_Actor()
 	if (TMesh.Succeeded()) {
 		TreeMesh->SetStaticMesh(TMesh.Object);
 	}
+	TreeMesh->SetWorldScale3D(FVector(1.5f, 1.5f, 3.f));
+	CollisionBoxTree = CreateDefaultSubobject<UBoxComponent>(TEXT("TreeBoxComp"));
 }
 
 // Called when the game starts or when spawned
 void ATree_Actor::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	CollisionBoxTree->OnComponentBeginOverlap.AddDynamic(this, &ATree_Actor::OnOverlap);
 }
 
 // Called every frame
@@ -28,6 +33,11 @@ void ATree_Actor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void ATree_Actor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	/*if(OtherActor->ActorHasTag("Bullet_Actor"))*/
 }
 
 

@@ -12,14 +12,14 @@ ABullet_Actor::ABullet_Actor()
 	PrimaryActorTick.bCanEverTick = true;
 
 	BulletMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BulletMeshComponent"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh>MeshComponent(TEXT("StaticMesh'/Engine/EditorMeshes/EditorSphere.EditorSphere'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh>MeshComponent(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
 	if (MeshComponent.Succeeded()) {
 		BulletMesh->SetStaticMesh(MeshComponent.Object);
 	}
-
+	BulletMesh->SetWorldScale3D(FVector(0.5f, 0.5f, 0.5f));
 	NewLocation = GetActorLocation();
 
-	BulletMesh->OnComponentBeginOverlap.AddDynamic(this, &ABullet_Actor::OnOverlap);
+	/*BulletMesh->OnComponentBeginOverlap.AddDynamic(this, &ABullet_Actor::OnOverlap);*/
 }
 
 // Called when the game starts or when spawned
