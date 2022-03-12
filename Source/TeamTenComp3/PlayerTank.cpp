@@ -41,6 +41,8 @@ APlayerTank::APlayerTank()
 	//speed
 	CurrentVelocity = FVector(0.f);
 	Speed = 100;
+	//cameracontrol pitch/yaw
+	CameraInput = FVector2D(0.f,0.f);
 
 	//makes pawn accessible
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
@@ -69,6 +71,9 @@ void APlayerTank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	InputComponent->BindAxis("Forward", this, &APlayerTank::MoveForward);
 	InputComponent->BindAxis("Right", this, &APlayerTank::MoveRight);
+
+	InputComponent->BindAxis("CameraPitch", this, &APlayerTank::CameraPitch);
+	InputComponent->BindAxis("CameraYaw", this, &APlayerTank::CameraYaw);
 }
 
 //virtual class UPawnMovementComponent* GetMoveComp() const
@@ -98,3 +103,12 @@ void APlayerTank::MoveRight(float Value)
 	}
 }
 
+void CameraPitch(float AxisValue)
+{
+	
+}
+
+void CameraYaw(float AxisValue)
+{
+	
+}

@@ -58,7 +58,14 @@ private:
 	void MoveForward(float Value);
 	void MoveRight(float Value);
 	//current speed
-	FVector CurrentVelocity;
+    	FVector CurrentVelocity;
+
+	//CameraControls
+	void CameraPitch(float AxisValue);
+	void CameraYaw(float AxisValue);
+	//vector for camera pitch and yaw
+	FVector2D CameraInput;
+	
 	
 	
 };
