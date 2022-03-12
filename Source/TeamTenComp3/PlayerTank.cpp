@@ -31,6 +31,7 @@ APlayerTank::APlayerTank()
 	//Set Camera to boom
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
+
 }
 
 // Called when the game starts or when spawned

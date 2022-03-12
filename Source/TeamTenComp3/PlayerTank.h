@@ -40,4 +40,11 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
 	class UCameraComponent* Camera{ nullptr };
 
+	//movement
+	//speed
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Movement")
+	float Speed = 0;
+
+
+	
 };
