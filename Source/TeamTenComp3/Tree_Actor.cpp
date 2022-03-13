@@ -19,6 +19,8 @@ ATree_Actor::ATree_Actor()
 	}
 	TreeMesh->SetWorldScale3D(FVector(1.5f, 1.5f, 3.f));
 	CollisionBoxTree = CreateDefaultSubobject<UBoxComponent>(TEXT("TreeBoxComp"));
+	TreeMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	/*CollisionBoxTree->SetBoxExtent(FVector(1.5f, 1.5f, 1.5f));*/
 }
 
 // Called when the game starts or when spawned
