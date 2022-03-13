@@ -8,6 +8,8 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "GameFramework/PawnMovementComponent.h"
+#include "GameFramework/PlayerInput.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 APlayerTank::APlayerTank()
@@ -27,8 +29,10 @@ APlayerTank::APlayerTank()
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(Sphere);
 	//define boom
-	CameraBoom->TargetArmLength = 500.f;
+	CameraBoom->TargetArmLength = 1000.f;
 	CameraBoom->SetRelativeRotation(FRotator(-35.f, 0.f, 0.f));
+	CameraBoom->bEnableCameraLag = true;
+	CameraBoom->CameraLagSpeed = 10.f;
 
 	//Set Camera to boom
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
@@ -41,7 +45,7 @@ APlayerTank::APlayerTank()
 	//speed
 	CurrentVelocity = FVector(0.f);
 	Speed = 100;
-	//cameracontrol pitch/yaw
+	//CameraControl pitch/yaw
 	CameraInput = FVector2D(0.f,0.f);
 
 	//makes pawn accessible
@@ -70,7 +74,7 @@ void APlayerTank::Tick(float DeltaTime)
 	NewRotation.Yaw += CameraInput.X;
 	SetActorRotation(NewRotation);
 	//Pitch -
-	//Get Boom roation
+	//Get CameraBoom Rotation
 	FRotator NewCameraBoomRotation = CameraBoom->GetComponentRotation();
 	NewCameraBoomRotation.Pitch = FMath::Clamp(NewCameraBoomRotation.Pitch += CameraInput.Y, -80.f, -15.f);
 	CameraBoom->SetWorldRotation(NewCameraBoomRotation);
@@ -85,12 +89,9 @@ void APlayerTank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 	InputComponent->BindAxis("CameraPitch", this, &APlayerTank::CameraPitch);
 	InputComponent->BindAxis("CameraYaw", this, &APlayerTank::CameraYaw);
-}
 
-//virtual class UPawnMovementComponent* GetMoveComp() const
-//{
-//	return MoveComp;
-//}
+	InputComponent->BindAction("Fire", EInputEvent::IE_Pressed, this, &APlayerTank::Fire);
+}
 
 void APlayerTank::MoveForward(float Value)
 {
@@ -123,3 +124,20 @@ void APlayerTank::CameraYaw(float AxisValue)
 {
 	CameraInput.Y = AxisValue;
 }
+
+void APlayerTank::Fire()
+{
+	if (AmmoAmount > 0) {
+		AmmoAmount--;
+		UWorld* World = GetWorld();
+		if (World) {
+			FVector PlayerLocation = GetActorLocation();
+			World->SpawnActor<ABullet_Actor>(BulletSpawn, PlayerLocation + FVector(100.f, 0, 0.f), GetActorRotation());
+			//UGameplayStatics::PlaySound2D(World, FireSound, 1.f, 1.f, 0.f, 0.f);
+		}
+		if (AmmoAmount == 0) {
+			//no fire
+		}
+	}
+}
+
