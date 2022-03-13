@@ -10,6 +10,8 @@
 #include "GameFramework/PawnMovementComponent.h"
 #include "GameFramework/PlayerInput.h"
 #include "Kismet/GameplayStatics.h"
+#include "Engine/World.h"
+
 
 // Sets default values
 APlayerTank::APlayerTank()
@@ -129,6 +131,7 @@ void APlayerTank::Fire()
 {
 	if (AmmoAmount > 0) {
 		AmmoAmount--;
+		GEngine->AddOnScreenDebugMessage(-1,12.f, FColor::Black, FString::Printf((TEXT("There is how much ammo is left: %d", AmmoAmount))));
 		UWorld* World = GetWorld();
 		if (World) {
 			FVector PlayerLocation = GetActorLocation();
