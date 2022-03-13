@@ -43,7 +43,7 @@ public:
 
 	//movement
 	//speed
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Movement")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	float Speed;
 
 	//movement component
@@ -51,7 +51,7 @@ public:
 	class UPawnMovementComponent* MoveComp{ nullptr };
 
 	//Shoot
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Attack")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attack")
 	int AmmoAmount = 10;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Attack")
