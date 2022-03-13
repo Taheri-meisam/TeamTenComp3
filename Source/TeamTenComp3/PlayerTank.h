@@ -58,12 +58,10 @@ public:
 	class USoundBase* FireSound{nullptr};
 
 	UPROPERTY(VisibleAnywhere, meta =(AllowPrivateAccess = "true"));
-	TSubclassOf<ABullet_Actor> BulletSpawn;
+	TSubclassOf<class ABullet_Actor> BulletSpawn;
 	
 	void Fire();
-	
-	
-	
+		
 private:
 
 	//Movement
