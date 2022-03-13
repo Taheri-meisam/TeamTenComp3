@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Bullet_Actor.h"
 #include "GameFramework/Pawn.h"
 #include "PlayerTank.generated.h"
 
@@ -49,7 +50,19 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Movement")
 	class UPawnMovementComponent* MoveComp{ nullptr };
 
-//	virtual class UPawnMovementComponent* GetMoveComp();
+	//Shoot
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Attack")
+	int AmmoAmount = 10;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Attack")
+	class USoundBase* FireSound{nullptr};
+
+	UPROPERTY(VisibleAnywhere, meta =(AllowPrivateAccess = "true"));
+	TSubclassOf<ABullet_Actor> BulletSpawn;
+	
+	void Fire();
+	
+	
 	
 private:
 
