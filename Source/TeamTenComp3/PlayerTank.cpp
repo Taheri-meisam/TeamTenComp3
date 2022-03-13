@@ -11,6 +11,7 @@
 #include "GameFramework/PlayerInput.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
+#include "Bullet_Actor.h"
 
 
 // Sets default values
@@ -131,11 +132,11 @@ void APlayerTank::Fire()
 {
 	if (AmmoAmount > 0) {
 		AmmoAmount--;
-		GEngine->AddOnScreenDebugMessage(-1,12.f, FColor::Black, FString::Printf((TEXT("There is how much ammo is left: %d", AmmoAmount))));
+		//GEngine->AddOnScreenDebugMessage(-1,12.f, FColor::Black, FString::Printf((TEXT("There is how much ammo is left: %d"))));
 		UWorld* World = GetWorld();
 		if (World) {
 			FVector PlayerLocation = GetActorLocation();
-			World->SpawnActor<ABullet_Actor>(BulletSpawn, PlayerLocation + FVector(100.f, 0, 0.f), GetActorRotation());
+			World->SpawnActor<ABullet_Actor>(PlayerLocation + FVector(100.f, 0, 0.f), GetActorRotation());
 			//UGameplayStatics::PlaySound2D(World, FireSound, 1.f, 1.f, 0.f, 0.f);
 		}
 		if (AmmoAmount == 0) {
