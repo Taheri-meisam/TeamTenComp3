@@ -135,7 +135,7 @@ void APlayerTank::Fire()
 		//GEngine->AddOnScreenDebugMessage(-1,12.f, FColor::Black, FString::Printf((TEXT("There is how much ammo is left: %d"))));
 		UWorld* World = GetWorld();
 		if (World) {
-			FVector PlayerLocation = GetActorLocation();
+			FVector PlayerLocation = ();
 			World->SpawnActor<ABullet_Actor>(PlayerLocation + FVector(100.f, 0, 0.f), GetActorRotation());
 			//bullets are spawned on mesh' X-vector creating an odd effect when shooting in -X direction bullets shoots through mesh
 			//UGameplayStatics::PlaySound2D(World, FireSound, 1.f, 1.f, 0.f, 0.f);
