@@ -59,10 +59,21 @@ void APlayerTank::BeginPlay()
 void APlayerTank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	//Movement Location
 	//define new location
 	FVector NewLocation = GetActorLocation() + (CurrentVelocity * DeltaTime);
 	//set new location
 	SetActorLocation(NewLocation);
+	//Movement Rotation
+	FRotator NewRotation = GetActorRotation();
+	//Yaw -
+	NewRotation.Yaw += CameraInput.X;
+	SetActorRotation(NewRotation);
+	//Pitch -
+	//Get Boom roation
+	FRotator NewCameraBoomRotation = CameraBoom->GetComponentRotation();
+	NewCameraBoomRotation.Pitch = FMath::Clamp(NewCameraBoomRotation.Pitch += CameraInput.Y, -80.f, -15.f);
+	CameraBoom->SetWorldRotation(NewCameraBoomRotation);
 }
 
 // Called to bind functionality to input
@@ -103,12 +114,12 @@ void APlayerTank::MoveRight(float Value)
 	}
 }
 
-void CameraPitch(float AxisValue)
+void APlayerTank::CameraPitch(float AxisValue)
 {
-	
+	CameraInput.X = AxisValue;
 }
 
-void CameraYaw(float AxisValue)
+void APlayerTank::CameraYaw(float AxisValue)
 {
-	
+	CameraInput.Y = AxisValue;
 }
