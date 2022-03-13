@@ -17,10 +17,12 @@ ATree_Actor::ATree_Actor()
 	if (TMesh.Succeeded()) {
 		TreeMesh->SetStaticMesh(TMesh.Object);
 	}
+	SetRootComponent(TreeMesh);
 	TreeMesh->SetWorldScale3D(FVector(1.5f, 1.5f, 3.f));
 	CollisionBoxTree = CreateDefaultSubobject<UBoxComponent>(TEXT("TreeBoxComp"));
 	TreeMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	/*CollisionBoxTree->SetBoxExtent(FVector(1.5f, 1.5f, 1.5f));*/
+	CollisionBoxTree->SetBoxExtent(FVector(10.5f, 10.5f, 30.f));
+	
 }
 
 // Called when the game starts or when spawned
@@ -39,8 +41,18 @@ void ATree_Actor::Tick(float DeltaTime)
 
 void ATree_Actor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	/*if(OtherActor->ActorHasTag("Bullet_Actor"))*/
+	if (OtherActor->ActorHasTag("BulletActor")) {
+		ABullet_Actor* Bullet_Bullet = Cast<ABullet_Actor>(OtherActor);
+		SetActorHiddenInGame(true);
+	 
+	}
 }
+
+void ATree_Actor::Destroy_Tree()
+{
+	this->Destroy();
+}
+
 
 
 

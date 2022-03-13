@@ -3,6 +3,8 @@
 
 #include "Bullet_Actor.h"
 #include "Components/StaticMeshComponent.h"
+#include "Tree_Actor.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -17,9 +19,9 @@ ABullet_Actor::ABullet_Actor()
 		BulletMesh->SetStaticMesh(MeshComponent.Object);
 	}
 	BulletMesh->SetWorldScale3D(FVector(0.5f, 0.5f, 0.5f));
-	NewLocation = GetActorLocation();
+	
 
-	/*BulletMesh->OnComponentBeginOverlap.AddDynamic(this, &ABullet_Actor::OnOverlap);*/
+	BulletMesh->OnComponentBeginOverlap.AddDynamic(this, &ABullet_Actor::OnOverlap);
 }
 
 // Called when the game starts or when spawned
@@ -33,16 +35,21 @@ void ABullet_Actor::BeginPlay()
 void ABullet_Actor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	NewLocation = GetActorLocation();
 	NewLocation = NewLocation+GetActorForwardVector()*BulletSpeed*DeltaTime;
 	SetActorLocation(NewLocation);
 	
 	LivingTimeOfBullets += DeltaTime;
-	if (LivingTimeOfBullets > EndOfLiving || LivingTimeOfBullets == EndOfLiving) {
+	if (LivingTimeOfBullets > EndOfLiving /*|| LivingTimeOfBullets == EndOfLiving*/) {
 		this->Destroy();
 	}
 }
 
 void ABullet_Actor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	if (OtherActor->IsA(ATree_Actor::StaticClass())) {
+
+		/*Cast<ATree_Actor>(OtherActor)->ImHit();*/
+	}
 }
 

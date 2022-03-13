@@ -35,7 +35,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="BulletCharacteristic")
 	float LivingTimeOfBullets = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BulletCharacteristic")
-	float BulletSpeed = 10;
+	float BulletSpeed = 1000;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BulletCharacteristic")
 	float Bullets = 10;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BulletCharacteristic")

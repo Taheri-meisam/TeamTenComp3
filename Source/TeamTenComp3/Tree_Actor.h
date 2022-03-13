@@ -26,12 +26,13 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "TreeMesh")
 		class UStaticMeshComponent* TreeMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CollisionComponent")
-		class UShapeComponent* CollisionBoxTree;
+		class UBoxComponent* CollisionBoxTree=nullptr;
 	UPROPERTY(EditAnywhere, Category = "Bullet_Actors")
 		TSubclassOf<AActor> Bullets;
 	UFUNCTION()
 		void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
+	void Destroy_Tree();
 
 	FVector ActorLocation;
 };
