@@ -21,16 +21,16 @@ APlayerTank::APlayerTank()
 	PrimaryActorTick.bCanEverTick = true;
 
 	//set SphereComponent to Root
-	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
-	SetRootComponent(Sphere);
+	//Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
+	//SetRootComponent(Sphere);
 
 	//set mesh to Root
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	Mesh->SetupAttachment(Sphere);
+	Mesh->SetupAttachment(RootComponent);
 
 	//Set boom to Root
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
-	CameraBoom->SetupAttachment(Sphere);
+	CameraBoom->SetupAttachment(RootComponent);
 	//define boom
 	CameraBoom->TargetArmLength = 1000.f;
 	CameraBoom->SetRelativeRotation(FRotator(-35.f, 0.f, 0.f));
@@ -44,7 +44,7 @@ APlayerTank::APlayerTank()
 	//Movement
 	//MovementComponenet
 	MoveComp = CreateDefaultSubobject<UPawnMovementComponent, UFloatingPawnMovement>(TEXT("MoveComp"));
-	MoveComp->UpdatedComponent = Sphere;
+	MoveComp->UpdatedComponent = RootComponent;
 	//speed
 	CurrentVelocity = FVector(0.f);
 	Speed = 100;
