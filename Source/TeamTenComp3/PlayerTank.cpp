@@ -136,7 +136,7 @@ void APlayerTank::Fire()
 		UWorld* World = GetWorld();
 		if (World) {
 			FVector PlayerLocation = GetActorForwardVector();
-			World->SpawnActor<ABullet_Actor>(BulletSpawn, PlayerLocation + FVector(100.f, 0.f, 0.f), GetActorRotation());
+			World->SpawnActor<ABullet_Actor>(PlayerLocation + FVector(100.f, 1.f, 0.f), GetActorRotation());
 			//bullets are spawned on mesh' X-vector creating an odd effect when shooting in -X direction bullets shoots through mesh
 			//UGameplayStatics::PlaySound2D(World, FireSound, 1.f, 1.f, 0.f, 0.f);
 		}
