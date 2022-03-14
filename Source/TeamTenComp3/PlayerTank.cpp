@@ -3,7 +3,7 @@
 
 #include "PlayerTank.h"
 #include "Components/SphereComponent.h"
-#include "Components/StaticMeshComponent.h"
+
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
@@ -21,16 +21,16 @@ APlayerTank::APlayerTank()
 	PrimaryActorTick.bCanEverTick = true;
 
 	//set SphereComponent to Root
-	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
-	SetRootComponent(Sphere);
+	//Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
+	//SetRootComponent(Sphere);
 
 	//set mesh to Root
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	Mesh->SetupAttachment(Sphere);
+	Mesh->SetupAttachment(RootComponent);
 
 	//Set boom to Root
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
-	CameraBoom->SetupAttachment(Sphere);
+	CameraBoom->SetupAttachment(Mesh);
 	//define boom
 	CameraBoom->TargetArmLength = 1000.f;
 	CameraBoom->SetRelativeRotation(FRotator(-35.f, 0.f, 0.f));
@@ -44,7 +44,7 @@ APlayerTank::APlayerTank()
 	//Movement
 	//MovementComponenet
 	MoveComp = CreateDefaultSubobject<UPawnMovementComponent, UFloatingPawnMovement>(TEXT("MoveComp"));
-	MoveComp->UpdatedComponent = Sphere;
+	MoveComp->UpdatedComponent = Mesh;
 	//speed
 	CurrentVelocity = FVector(0.f);
 	Speed = 100;
@@ -68,11 +68,11 @@ void APlayerTank::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	//Movement Location
 	//define new location
-	FVector NewLocation = GetActorLocation() + (CurrentVelocity * DeltaTime);
+	NewLocation = GetActorLocation() + (CurrentVelocity * DeltaTime);
 	//set new location
 	SetActorLocation(NewLocation);
 	//Movement Rotation
-	FRotator NewRotation = GetActorRotation();
+	NewRotation = GetActorRotation();
 	//Yaw -
 	NewRotation.Yaw += CameraInput.X;
 	SetActorRotation(NewRotation);
@@ -135,8 +135,8 @@ void APlayerTank::Fire()
 		//GEngine->AddOnScreenDebugMessage(-1,12.f, FColor::Black, FString::Printf((TEXT("There is how much ammo is left: %d"))));
 		UWorld* World = GetWorld();
 		if (World) {
-			FVector PlayerLocation = GetActorForwardVector();
-			World->SpawnActor<ABullet_Actor>(BulletSpawn, PlayerLocation + FVector(100.f, 0.f, 0.f), GetActorRotation());
+			FVector PlayerLocation = GetActorLocation();
+			World->SpawnActor<AActor>(BulletSpawn, PlayerLocation + FVector(10.f, 0.f, 0.f), GetActorRotation());  // AAcor added 
 			//bullets are spawned on mesh' X-vector creating an odd effect when shooting in -X direction bullets shoots through mesh
 			//UGameplayStatics::PlaySound2D(World, FireSound, 1.f, 1.f, 0.f, 0.f);
 		}
