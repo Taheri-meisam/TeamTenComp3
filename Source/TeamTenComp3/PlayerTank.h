@@ -57,8 +57,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Attack")
 	class USoundBase* FireSound{nullptr};
 
-	UPROPERTY(VisibleAnywhere, meta =(AllowPrivateAccess = "true"));
-	TSubclassOf<class ABullet_Actor> BulletSpawn;
+	UPROPERTY(VisibleAnywhere, meta =(AllowPrivateAccess = "true"), Category = "Bullet");
+	TSubclassOf<ABullet_Actor> BulletSpawn;
 	
 	void Fire();
 		

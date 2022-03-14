@@ -36,8 +36,7 @@ void ABullet_Actor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	NewLocation = GetActorLocation();
-	NewLocation = NewLocation+GetActorForwardVector()*BulletSpeed*DeltaTime;
-	SetActorLocation(NewLocation);
+	NewLocation = GetActorForwardVector()*BulletSpeed*DeltaTime; //removed excess NewLocation
 	
 	LivingTimeOfBullets += DeltaTime;
 	if (LivingTimeOfBullets > EndOfLiving /*|| LivingTimeOfBullets == EndOfLiving*/) {
