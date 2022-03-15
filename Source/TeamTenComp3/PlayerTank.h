@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Bullet_Actor.h"
 #include "GameFramework/Pawn.h"
+#include "Components/StaticMeshComponent.h"
 #include "PlayerTank.generated.h"
 
 UCLASS()
@@ -29,8 +30,8 @@ public:
 
 public:
 
-	UPROPERTY(VisibleAnywhere, Category = "Sphere")
-	class USphereComponent* Sphere{ nullptr };
+	//UPROPERTY(VisibleAnywhere, Category = "Sphere")
+	//class USphereComponent* Sphere{ nullptr };
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
 	class UStaticMeshComponent* Mesh{ nullptr };
@@ -43,7 +44,7 @@ public:
 
 	//movement
 	//speed
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Movement")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	float Speed;
 
 	//movement component
@@ -51,16 +52,18 @@ public:
 	class UPawnMovementComponent* MoveComp{ nullptr };
 
 	//Shoot
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Attack")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attack")
 	int AmmoAmount = 10;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Attack")
 	class USoundBase* FireSound{nullptr};
 
-	UPROPERTY(VisibleAnywhere, meta =(AllowPrivateAccess = "true"));
-	TSubclassOf<class ABullet_Actor> BulletSpawn;
+	UPROPERTY(EditAnywhere, meta =(AllowPrivateAccess = "true"), Category = "Bullet"); // changed to EditAnywhere
+	TSubclassOf<AActor> BulletSpawn;
 	
 	void Fire();
+	FVector NewLocation;
+	FRotator NewRotation;
 		
 private:
 
