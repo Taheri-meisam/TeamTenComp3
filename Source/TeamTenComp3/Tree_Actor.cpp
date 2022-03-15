@@ -13,15 +13,18 @@ ATree_Actor::ATree_Actor()
 	PrimaryActorTick.bCanEverTick = true;
 
 	TreeMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TreeMeshComponent"));
+	TreeMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	CollisionBoxTree = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
+	CollisionBoxTree->SetBoxExtent(FVector(1.5f, 1.5f, 3.f));
+	CollisionBoxTree->SetWorldScale3D(FVector(1.5f, 1.5f, 3.f));
+	RootComponent = CollisionBoxTree;
+	//SetRootComponent(CollisionBoxTree);
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>TMesh(TEXT("StaticMesh'/Engine/BasicShapes/Cylinder.Cylinder'"));
 	if (TMesh.Succeeded()) {
 		TreeMesh->SetStaticMesh(TMesh.Object);
 	}
-	SetRootComponent(TreeMesh);
 	TreeMesh->SetWorldScale3D(FVector(1.5f, 1.5f, 3.f));
-	CollisionBoxTree = CreateDefaultSubobject<UBoxComponent>(TEXT("TreeBoxComp"));
-	TreeMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	CollisionBoxTree->SetBoxExtent(FVector(10.5f, 10.5f, 30.f));
+
 	
 }
 
@@ -41,16 +44,19 @@ void ATree_Actor::Tick(float DeltaTime)
 
 void ATree_Actor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (OtherActor->ActorHasTag("BulletActor")) {
-		ABullet_Actor* Bullet_Bullet = Cast<ABullet_Actor>(OtherActor);
+	if (OtherActor->ActorHasTag("Bullet")) {
+		UE_LOG(LogTemp, Warning, TEXT("The tree is dead"));
+		ABullet_Actor* NewBullet = Cast<ABullet_Actor>(OtherActor);
+		FTimerHandle UnusedHadle;
+		GetWorldTimerManager().SetTimer(UnusedHadle, this, &ATree_Actor::Destroy_Tree, 0.1f, false);
 		SetActorHiddenInGame(true);
-	 
+
 	}
 }
 
 void ATree_Actor::Destroy_Tree()
 {
-	this->Destroy();
+	
 }
 
 

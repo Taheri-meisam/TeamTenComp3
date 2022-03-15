@@ -26,6 +26,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BulletMesh")
 		class UStaticMeshComponent* BulletMesh;
 
+	UPROPERTY(EditAnywhere, Category = "Tree")
+		TSubclassOf<AActor> Tree;
 
 	UFUNCTION()
 		void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult);

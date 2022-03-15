@@ -23,12 +23,17 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "TreeMesh")
 		class UStaticMeshComponent* TreeMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CollisionComponent")
 		class UBoxComponent* CollisionBoxTree=nullptr;
-	UPROPERTY(EditAnywhere, Category = "Bullet_Actors")
-		TSubclassOf<AActor> Bullets;
+
+
+
+	UPROPERTY(EditAnywhere, Category = "Bullet")
+		TSubclassOf<AActor> Bullet;
 	UFUNCTION()
 		void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
