@@ -25,6 +25,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BulletMesh")
 		class UStaticMeshComponent* BulletMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CollisionComponent")
+		class UBoxComponent* CollisionBoxBullet = nullptr;
+
 
 	UPROPERTY(EditAnywhere, Category = "Tree")
 		TSubclassOf<AActor> Tree;
