@@ -33,12 +33,19 @@ public:
 	//UPROPERTY(VisibleAnywhere, Category = "Sphere")
 	//class USphereComponent* Sphere{ nullptr };
 
+	/**Attempting to get the forward direction of the mesh at all times*/
+	UPROPERTY(VisibleAnywhere, Category = "Arrow")
+	class UArrowComponent* Arrow{nullptr};
+
+	/**Mesh component*/
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
 	class UStaticMeshComponent* Mesh{ nullptr };
-	
+
+	/**SpringArm component*/
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "CameraBoom")
 	class USpringArmComponent* CameraBoom{ nullptr };
 
+	/**Camera component*/
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
 	class UCameraComponent* Camera{ nullptr };
 
