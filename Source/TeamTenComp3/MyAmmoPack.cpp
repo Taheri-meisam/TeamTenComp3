@@ -6,6 +6,11 @@
 
 AMyAmmoPack::AMyAmmoPack() {
 
+	//static ConstructorHelpers::FObjectFinder<UStaticMesh>MeshComp(TEXT("StaticMesh'/Game/Assets/JohannaAssests/Bullet.Bullet'"));
+
+	//if (MeshComp.Succeeded()) {
+	//	AmmoMesh->SetStaticMesh(MeshComp.Object);
+	//}
 
 }
 

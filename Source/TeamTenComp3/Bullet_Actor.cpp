@@ -23,7 +23,7 @@ ABullet_Actor::ABullet_Actor()
 	
 	RootComponent = CollisionBoxBullet;
 	BulletMesh->SetupAttachment(RootComponent);*/
-	static ConstructorHelpers::FObjectFinder<UStaticMesh>MeshComponent(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh>MeshComponent(TEXT("StaticMesh'/Game/Assets/JohannaAssests/TinyBullet.TinyBullet'"));
 	if (MeshComponent.Succeeded()) {
 		BulletMesh->SetStaticMesh(MeshComponent.Object);
 	}
