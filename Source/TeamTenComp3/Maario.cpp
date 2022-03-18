@@ -27,25 +27,24 @@ void AMaario::BeginPlay()
 void AMaario::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	//HitDetection OverlapBegins, it will turn from false to true, changing the animation
-	
-
 }
 
 // Called to bind functionality to input
 void AMaario::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
 void AMaario::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
 	UE_LOG(LogTemp, Warning, (TEXT("Overlap Begins!")));
+	InPointingDistance = true;
+	UE_LOG(LogTemp, Warning, (TEXT("InPointingDistance = true")));
 }
 
 void AMaario::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 	UE_LOG(LogTemp, Warning, (TEXT("Overlap End!")));
+	InPointingDistance = false;
+	UE_LOG(LogTemp, Warning, (TEXT("InPointingDistance = false")));
 }

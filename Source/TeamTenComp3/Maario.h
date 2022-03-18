@@ -35,6 +35,10 @@ public:
 	/** variable is false, when inside sphere component it will check if it is it is true*/
 	/** how to make mesh point in the right direction? vectors and a boom?*/
 
+	/** bool for if player is in distance of a pickup, false- no, true- yes */
+	UPROPERTY(VisibleAnywhere, Category = "HitDetection")
+	bool InPointingDistance = false;
+	
 	/** Overlap functions - on begin overlap the bool InPointingDistance turns true*/
 	UFUNCTION()
 	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
