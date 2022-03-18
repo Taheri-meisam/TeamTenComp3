@@ -34,10 +34,13 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Bullet")
 		TSubclassOf<AActor> Bullet;
+<<<<<<< Updated upstream
 
 
 	UPROPERTY(EditAnywhere, Category = "SpawnItem")
 		TSubclassOf<AActor> Health;
+=======
+>>>>>>> Stashed changes
 	UFUNCTION()
 		void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 

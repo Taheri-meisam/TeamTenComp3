@@ -28,6 +28,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CollisionComponent")
 		class UBoxComponent* CollisionBoxBullet = nullptr;
 
+	UPROPERTY(EditAnywhere, Category = "Tree")
+		TSubclassOf<AActor> Tree;
 
 	UPROPERTY(EditAnywhere, Category = "Tree")
 		TSubclassOf<AActor> Tree;
