@@ -3,4 +3,4 @@
 
 #include "MaarioAnimInstance.h"
 
-void AMaarioAnimInstance::NativeInitializeAnimation();
+void AMaarioAnimInstance::NativeInitial	izeAnimation();

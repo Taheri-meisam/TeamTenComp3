@@ -46,6 +46,6 @@ public:
 	UFUNCTION()
 	virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
-};
+	/** bool used to check if Actor (item pickups) are in line of sight*/
 
-	
+};

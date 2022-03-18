@@ -28,8 +28,6 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-public:
-
 	//UPROPERTY(VisibleAnywhere, Category = "Sphere")
 	//class USphereComponent* Sphere{ nullptr };
 
@@ -48,6 +46,10 @@ public:
 	/**Camera component*/
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
 	class UCameraComponent* Camera{ nullptr };
+	
+	/** Spring arm holding Maario in place above PlayerTank*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "MaarioBoom")
+	class USpringArmComponent* MaarioBoom{nullptr};
 
 	//movement
 	//speed
