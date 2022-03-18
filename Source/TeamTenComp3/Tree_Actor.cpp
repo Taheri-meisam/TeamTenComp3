@@ -13,39 +13,25 @@ ATree_Actor::ATree_Actor()
 	PrimaryActorTick.bCanEverTick = true;
 
 	TreeMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TreeMeshComponent"));
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 	
-=======
-=======
->>>>>>> Stashed changes
 	TreeMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	CollisionBoxTree = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
 	CollisionBoxTree->SetBoxExtent(FVector(1.5f, 1.5f, 3.f));
 	CollisionBoxTree->SetWorldScale3D(FVector(1.5f, 1.5f, 3.f));
 	RootComponent = CollisionBoxTree;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 	//SetRootComponent(CollisionBoxTree);
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>TMesh(TEXT("StaticMesh'/Engine/BasicShapes/Cylinder.Cylinder'"));
 	if (TMesh.Succeeded()) {
 		TreeMesh->SetStaticMesh(TMesh.Object);
 	}
 	TreeMesh->SetWorldScale3D(FVector(1.5f, 1.5f, 3.f));
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 	SetRootComponent(TreeMesh);
 	CollisionBoxTree = CreateDefaultSubobject<UBoxComponent>(TEXT("TreeCollComp"));
 	TreeMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-=======
 
->>>>>>> Stashed changes
-=======
-
->>>>>>> Stashed changes
-	
 }
 
 // Called when the game starts or when spawned
@@ -65,17 +51,15 @@ void ATree_Actor::Tick(float DeltaTime)
 
 void ATree_Actor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 	UE_LOG(LogTemp, Warning, TEXT("The tree is dead"));
-	if (OtherActor->ActorHasTag("Bullets")) {
-		
-		ABullet_Actor* NewBullet = Cast<ABullet_Actor>(OtherActor);
-		SetActorHiddenInGame(true);
-	
-=======
-=======
->>>>>>> Stashed changes
+	//if (OtherActor->ActorHasTag("Bullets")) {
+
+	//	ABullet_Actor* NewBullet = Cast<ABullet_Actor>(OtherActor);
+	//	SetActorHiddenInGame(true);
+
+	//}
+
 	if (OtherActor->ActorHasTag("Bullet")) {
 		UE_LOG(LogTemp, Warning, TEXT("The tree is dead"));
 		ABullet_Actor* NewBullet = Cast<ABullet_Actor>(OtherActor);
@@ -83,10 +67,6 @@ void ATree_Actor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 		GetWorldTimerManager().SetTimer(UnusedHadle, this, &ATree_Actor::Destroy_Tree, 0.1f, false);
 		SetActorHiddenInGame(true);
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 	}
 }
 

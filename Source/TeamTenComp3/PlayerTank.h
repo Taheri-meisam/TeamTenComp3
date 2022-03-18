@@ -31,19 +31,17 @@ public:
 	//UPROPERTY(VisibleAnywhere, Category = "Sphere")
 	//class USphereComponent* Sphere{ nullptr };
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 	/**Attempting to get the forward direction of the mesh at all times*/
 	UPROPERTY(VisibleAnywhere, Category = "Arrow")
 	class UArrowComponent* Arrow{nullptr};
-=======
+
 	//UPROPERTY(VisibleAnywhere, Category = "Sphere")
 	//class USphereComponent* Sphere{ nullptr };
->>>>>>> Stashed changes
-=======
+
 	//UPROPERTY(VisibleAnywhere, Category = "Sphere")
 	//class USphereComponent* Sphere{ nullptr };
->>>>>>> Stashed changes
+
 
 	/**Mesh component*/
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")

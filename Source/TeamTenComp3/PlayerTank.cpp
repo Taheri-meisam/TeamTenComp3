@@ -2,18 +2,11 @@
 
 
 #include "PlayerTank.h"
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 //#include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
-=======
 #include "Components/SphereComponent.h"
-
->>>>>>> Stashed changes
-=======
 #include "Components/SphereComponent.h"
-
->>>>>>> Stashed changes
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
@@ -39,8 +32,6 @@ APlayerTank::APlayerTank()
 
 	//set mesh to Root
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 	//StaticMesh'/Engine/BasicShapes/Cube.Cube'
 	//StaticMesh'/Engine/BasicShapes/Cube.Cube'
 	SetRootComponent(Mesh);
@@ -52,12 +43,10 @@ APlayerTank::APlayerTank()
 
 	Arrow = CreateDefaultSubobject<UArrowComponent>(TEXT("Arrow"));
 	Arrow->SetupAttachment(Mesh);
-=======
+
+	//Mesh->SetupAttachment(RootComponent);
+
 	Mesh->SetupAttachment(RootComponent);
->>>>>>> Stashed changes
-=======
-	Mesh->SetupAttachment(RootComponent);
->>>>>>> Stashed changes
 
 	//Set boom to Root
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
@@ -177,8 +166,7 @@ void APlayerTank::Fire()
 		UWorld* World = GetWorld();
 		if (World) {
 			FVector PlayerLocation = GetActorLocation();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 			/** Bjorn Joakim suggegsted this addition - adding a forward vector and multiplying it to the location vector*/
 			FVector ForwardVector = GetActorForwardVector();
 			ForwardVector *= 200;
@@ -186,12 +174,10 @@ void APlayerTank::Fire()
 			/** made a pointer ABullet_Actor, added a variable name and assignment sign*/
 			World->SpawnActor<AActor>(BulletSpawn, PlayerLocation, GetActorRotation());  // AAcor added
 			//bullets are spawned on mesh' X-vector creating an odd effect when shooting in -X direction bullets shoots through mesh //THIS IS NOW FIXED WITH BJ's SUGGESTED ADDITION
-=======
-=======
->>>>>>> Stashed changes
-			World->SpawnActor<AActor>(BulletSpawn, PlayerLocation + FVector(10.f, 0.f, 0.f), GetActorRotation());  // AAcor added 
+
+
+			//World->SpawnActor<AActor>(BulletSpawn, PlayerLocation + FVector(10.f, 0.f, 0.f), GetActorRotation());  // AAcor added 
 			//bullets are spawned on mesh' X-vector creating an odd effect when shooting in -X direction bullets shoots through mesh
->>>>>>> Stashed changes
 			//UGameplayStatics::PlaySound2D(World, FireSound, 1.f, 1.f, 0.f, 0.f);
 			
 

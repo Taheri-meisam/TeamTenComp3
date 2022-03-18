@@ -17,8 +17,7 @@ ABullet_Actor::ABullet_Actor()
 
 
 	BulletMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BulletMeshComponent"));
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 	/*BulletMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	CollisionBoxBullet = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
 	CollisionBoxBullet->SetBoxExtent(FVector(0.5f, 0.5f, 0.5f));
@@ -26,46 +25,31 @@ ABullet_Actor::ABullet_Actor()
 	RootComponent = CollisionBoxBullet;
 	BulletMesh->SetupAttachment(RootComponent);*/
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>MeshComponent(TEXT("StaticMesh'/Game/Assets/JohannaAssests/TinyBullet.TinyBullet'"));
-=======
-=======
->>>>>>> Stashed changes
+
 	RootComponent = BulletMesh;
 	BulletMesh->SetSimulatePhysics(true);
 	BulletMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	static ConstructorHelpers::FObjectFinder<UStaticMesh>MeshComponent(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
->>>>>>> Stashed changes
+	/*static ConstructorHelpers::FObjectFinder<UStaticMesh>MeshComponent(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));*/
+
 	if (MeshComponent.Succeeded()) {
 		BulletMesh->SetStaticMesh(MeshComponent.Object);
 	}
 	BulletMesh->SetWorldScale3D(FVector(0.5f, 0.5f, 0.5f));
 	BulletMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-<<<<<<< Updated upstream
 
-<<<<<<< Updated upstream
 
 	BulletMesh->OnComponentBeginOverlap.AddDynamic(this, &ABullet_Actor::OnOverlap);
-=======
-	
->>>>>>> Stashed changes
-=======
-
-	
->>>>>>> Stashed changes
-	
 }
 
 // Called when the game starts or when spawned
 void ABullet_Actor::BeginPlay()
 {
 	Super::BeginPlay();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
+
 	BulletMesh->OnComponentBeginOverlap.AddDynamic(this, &ABullet_Actor::OnOverlap);
->>>>>>> Stashed changes
-=======
-	BulletMesh->OnComponentBeginOverlap.AddDynamic(this, &ABullet_Actor::OnOverlap);
->>>>>>> Stashed changes
+
+	//BulletMesh->OnComponentBeginOverlap.AddDynamic(this, &ABullet_Actor::OnOverlap);
+
 }
 
 // Called every frame
@@ -83,15 +67,13 @@ void ABullet_Actor::Tick(float DeltaTime)
 
 void ABullet_Actor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 	if (OtherActor->IsA(ATree_Actor::StaticClass())) {
-=======
+	}
+	/*if (OtherActor->ActorHasTag("Tree")) {
+	}*/
 	if (OtherActor->ActorHasTag("Tree")) {
->>>>>>> Stashed changes
-=======
-	if (OtherActor->ActorHasTag("Tree")) {
->>>>>>> Stashed changes
+
 		UE_LOG(LogTemp, Warning, TEXT("Collidated with a tree"));
 		OtherActor->Destroy();
 	}
