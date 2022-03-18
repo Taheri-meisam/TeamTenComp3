@@ -22,6 +22,13 @@ void AMyHealthPack::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AAc
 
 	UE_LOG(LogTemp, Warning, TEXT("testing 1"));
 	//HealthAmmount = HealthAmmount + 20;
+
+	if (OtherActor->IsA(APlayerTank::StaticClass()))
+	{
+		APlayerTank* TempTank;
+		TempTank = Cast<APlayerTank>(OtherActor);
+		TempTank->HealthAmmount -= 10;
+	}
 }
 
 void AMyHealthPack::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
