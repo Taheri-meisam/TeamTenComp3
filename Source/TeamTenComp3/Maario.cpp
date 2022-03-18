@@ -27,6 +27,7 @@ void AMaario::BeginPlay()
 void AMaario::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	//bool LineOfSightTo(const class AActor * Other, FVector ViewPoint, bool bAlternateChecks ) const;
 }
 
 // Called to bind functionality to input

@@ -54,6 +54,16 @@ APlayerTank::APlayerTank()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 
+	//Boom connecting Maario and PlayerTank
+	MaarioBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("MaarioBoom"));
+	MaarioBoom->SetupAttachment(Mesh);
+	FRotator UpwardsVector = GetActorRotation();
+	UpwardsVector += FRotator(0.f, 0.f, 100.f);
+	MaarioBoom->SetRelativeRotation(UpwardsVector);
+	MaarioBoom->bEnableCameraLag = false;
+	MaarioBoom->TargetArmLength = 1000.f;
+	//Set MaarioBoom to Maario
+	
 	//Movement
 	//MovementComponenet
 	MoveComp = CreateDefaultSubobject<UPawnMovementComponent, UFloatingPawnMovement>(TEXT("MoveComp"));
