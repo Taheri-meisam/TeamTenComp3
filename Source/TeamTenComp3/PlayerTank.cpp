@@ -32,7 +32,7 @@ APlayerTank::APlayerTank()
 	//StaticMesh'/Engine/BasicShapes/Cube.Cube'
 	//StaticMesh'/Engine/BasicShapes/Cube.Cube'
 	SetRootComponent(Mesh);
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> Sheep(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> Sheep(TEXT("StaticMesh'/Game/Assets/JohannaAssests/Bullet.Bullet'"));
     if (Sheep.Succeeded())
     {
 	    Mesh->SetStaticMesh(Sheep.Object);
