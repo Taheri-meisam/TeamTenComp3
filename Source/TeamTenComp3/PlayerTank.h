@@ -68,6 +68,9 @@ public:
 	UPROPERTY(EditAnywhere, meta =(AllowPrivateAccess = "true"), Category = "Bullet"); // changed to EditAnywhere
 	TSubclassOf<AActor> BulletSpawn;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerHealth")
+	int HealthAmmount = 100;
+
 	void Fire();
 	FVector NewLocation;
 	FRotator NewRotation;

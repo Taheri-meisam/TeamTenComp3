@@ -3,6 +3,7 @@
 
 #include "MyHealthPack.h"
 #include "MyItems.h"
+#include "PlayerTank.h"
 
 AMyHealthPack::AMyHealthPack() {
 
@@ -20,6 +21,7 @@ void AMyHealthPack::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AAc
 	Super::OnOverlapBegin(OverlappedComponent, OtherActor, OtherComp, bFromSweep, bFromSweep, SweepResult);
 
 	UE_LOG(LogTemp, Warning, TEXT("testing 1"));
+	//HealthAmmount = HealthAmmount + 20;
 }
 
 void AMyHealthPack::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)

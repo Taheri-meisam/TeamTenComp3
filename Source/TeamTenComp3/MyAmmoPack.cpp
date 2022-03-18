@@ -2,6 +2,7 @@
 
 
 #include "MyAmmoPack.h"
+#include "PlayerTank.h"
 
 AMyAmmoPack::AMyAmmoPack() {
 
@@ -12,6 +13,7 @@ void AMyAmmoPack::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActo
 	Super::OnOverlapBegin(OverlappedComponent, OtherActor, OtherComp, bFromSweep, bFromSweep, SweepResult);
 
 	UE_LOG(LogTemp, Warning, TEXT("testing 1"));
+	//AmmoAmount = AmmoAmount + 5;
 }
 
 void AMyAmmoPack::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
