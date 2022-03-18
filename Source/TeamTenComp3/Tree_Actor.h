@@ -35,10 +35,13 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Bullet")
 		TSubclassOf<AActor> Bullet;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 
 	UPROPERTY(EditAnywhere, Category = "SpawnItem")
 		TSubclassOf<AActor> Health;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 	UFUNCTION()

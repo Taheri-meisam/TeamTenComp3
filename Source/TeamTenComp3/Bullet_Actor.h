@@ -30,9 +30,12 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Tree")
 		TSubclassOf<AActor> Tree;
+<<<<<<< Updated upstream
 
 	UPROPERTY(EditAnywhere, Category = "Tree")
 		TSubclassOf<AActor> Tree;
+=======
+>>>>>>> Stashed changes
 
 	UFUNCTION()
 		void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult);
