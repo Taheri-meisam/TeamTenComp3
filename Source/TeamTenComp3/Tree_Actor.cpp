@@ -5,6 +5,7 @@
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Bullet_Actor.h"
+#include "MyItems.h"
 
 // Sets default values
 ATree_Actor::ATree_Actor()
@@ -53,27 +54,32 @@ void ATree_Actor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 {
 
 	UE_LOG(LogTemp, Warning, TEXT("The tree is dead"));
-	//if (OtherActor->ActorHasTag("Bullets")) {
 
-	//	ABullet_Actor* NewBullet = Cast<ABullet_Actor>(OtherActor);
-	//	SetActorHiddenInGame(true);
+	
 
-	//}
 
-	if (OtherActor->ActorHasTag("Bullet")) {
-		UE_LOG(LogTemp, Warning, TEXT("The tree is dead"));
-		ABullet_Actor* NewBullet = Cast<ABullet_Actor>(OtherActor);
-		FTimerHandle UnusedHadle;
-		GetWorldTimerManager().SetTimer(UnusedHadle, this, &ATree_Actor::Destroy_Tree, 0.1f, false);
-		SetActorHiddenInGame(true);
+		if (OtherActor->ActorHasTag("Bullets")) {
 
-	}
-}
 
-void ATree_Actor::Destroy_Tree()
-{
+			ABullet_Actor* NewBullet = Cast<ABullet_Actor>(OtherActor);
+
+			SetActorHiddenInGame(true);
+
+
+
+
+			//UWorld* World = GetWorld();
+			//if (World) {
+
+			//	//FVector LocationTree = GetActorLocation();
+			//	World->SpawnActor<AActor>(Progress);
+			//}
+
+		}
 	
 }
+
+
 
 
 
