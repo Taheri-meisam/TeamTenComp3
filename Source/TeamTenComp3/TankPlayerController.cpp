@@ -2,12 +2,19 @@
 
 
 #include "TankPlayerController.h"
-
-void ATankPlayerController::BeginPlay() {
-	//Super::BeginPlay();
-	//if (W_Screen) {
-	//	Screen_UI= CreateWidget<UUserWidget>(this, W_Sreen);
-	//}
+#include "Blueprint/UserWidget.h"
 
 
+
+void ATankPlayerController::BeginPlay()
+{
+	Super::BeginPlay();
+	//if it finds HUDOverlayAsset it will create a widget of HUDOverlay
+	if (HUDOverlayAsset) {
+		HUDOverlay = CreateWidget<UUserWidget>(this, HUDOverlayAsset);
+	}
+	//add to viewport
+	HUDOverlay->AddToViewport();
+	//makes hud visible
+	HUDOverlay->SetVisibility(ESlateVisibility::Visible);
 }

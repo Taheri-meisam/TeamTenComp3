@@ -81,6 +81,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerHealth")
 	int HealthAmmount = 100;
 
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerHealth")
+	//	int Health = ;
+
+
 	void Fire();
 	FVector NewLocation;
 	FRotator NewRotation;

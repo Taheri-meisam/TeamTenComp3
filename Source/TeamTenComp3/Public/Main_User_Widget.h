@@ -18,15 +18,17 @@ class TEAMTENCOMP3_API UMain_User_Widget : public UUserWidget
 	GENERATED_BODY()
 public:
 
-	APlayerTank* PlayerTankPts = Cast<APlayerTank>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	APlayerTank* PlayerTankPtrs = Cast<APlayerTank>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 	ATeamTenComp3GameModeBase* GameModeBasePtrs = Cast<ATeamTenComp3GameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 	void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI", meta = (BindWidget))
 		class UUserWidget* Ammo_Bar;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI", meta = (BindWidget))
-		class UUserWidget* Ammo_Max_Amount;
+		class UTextBlock* Ammo_Max_Amount;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI", meta = (BindWidget))
-		class UUserWidget* Ammo_Zero;
+		class UTextBlock* Ammo_Zero;
+
+	float Rest_Of_Ammo;
 
 };
