@@ -45,4 +45,5 @@ public:
 	float Bullets = 10;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BulletCharacteristic")
 	float EndOfLiving = 10;
+	
 };
