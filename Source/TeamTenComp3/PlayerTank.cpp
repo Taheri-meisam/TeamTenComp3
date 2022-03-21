@@ -192,6 +192,7 @@ void APlayerTank::Fire()
 	}
 }
 
+<<<<<<< Updated upstream
 float APlayerTank::ReturnAmmo()
 {
 	return AmmoAmount;
@@ -201,3 +202,17 @@ float APlayerTank::ReturnMaxAmmo()
 {
 	return MaxAmmo;
 }
+=======
+void APlayerTank::SwitchLevel(FName LevelName) {
+	UWorld* World = GetWorld();
+	if (World) {
+		FString CurrentLevel = World->GetMapName();
+
+		FName CurrentLevelName(CurrentLevel);
+		if (CurrentLevelName != LevelName) {
+			UGameplayStatics::OpenLevel(World, LevelName);
+		}
+	}
+}
+
+>>>>>>> Stashed changes

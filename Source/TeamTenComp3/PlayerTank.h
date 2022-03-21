@@ -124,6 +124,7 @@ private:
 	//vector for camera pitch and yaw
 	FVector2D CameraInput;
 	
-	
+public:
+	void SwitchLevel(FName LevelName);
 	
 };
