@@ -13,6 +13,10 @@
 #include "Engine/World.h"
 #include "Math/Rotator.h"
 #include "Components/ArrowComponent.h"
+#include "Engine/EngineTypes.h"
+#include "Components/PrimitiveComponent.h"
+#include "GameFramework/Character.h"
+
 //#include "GameFramework/PlayerStart.h"
 //#include "Bullet_Actor.h"
 
@@ -24,9 +28,10 @@ APlayerTank::APlayerTank()
 	PrimaryActorTick.bCanEverTick = true;
 
 	//set SphereComponent to Root
-	//Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
-	//SetRootComponent(Sphere);
-
+	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
+	Sphere->SetupAttachment(RootComponent);
+	Sphere->OnComponentHit.AddDynamic(this, &APlayerTank::OnHit);
+	
 	//set mesh to Root
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	//StaticMesh'/Engine/BasicShapes/Cube.Cube'
@@ -82,6 +87,10 @@ APlayerTank::APlayerTank()
 void APlayerTank::BeginPlay()
 {
 	Super::BeginPlay();
+
+	//Spawning in Maario with this class -> the class is not specified in OutputLog
+	UWorld* World = GetWorld();
+	World->SpawnActor<AActor>(MaarioSpawn, GetActorLocation(), GetActorRotation());
 	
 }
 
@@ -175,4 +184,23 @@ void APlayerTank::Fire()
 		}
 	}
 }
+
+void APlayerTank::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	NumberHits++;
+	
+	UE_LOG(LogTemp, Warning, TEXT("Player is Hit! %d"), NumberHits);
+}
+
+int APlayerTank::PlayerHealth()
+{
+	int Health;
+
+	Health = NumberHits * -20;
+
+	Health = HealthAmmount - Health;
+	
+	return Health;
+}
+
 
