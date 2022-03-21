@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PlayerTank.h"
 #include "Blueprint/UserWidget.h"
 #include "TeamTenComp3/PlayerTank.h"
 #include "AmmoWidget.generated.h"
@@ -30,4 +31,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UserInterface", meta = (BindWidget))
 		class UTextBlock* AmmoMax_Text_Block;
+
+	float Rest_Of_Ammo;
+	float Ammo_Percent;
 };

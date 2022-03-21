@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Bullet_Actor.h"
+#include "Maario.h"
 #include "GameFramework/Pawn.h"
 #include "Components/StaticMeshComponent.h"
 #include "PlayerTank.generated.h"
@@ -28,8 +29,8 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	//UPROPERTY(VisibleAnywhere, Category = "Sphere")
-	//class USphereComponent* Sphere{ nullptr };
+	UPROPERTY(VisibleAnywhere, Category = "Sphere")
+	class USphereComponent* Sphere{ nullptr };
 
 
 	/**Attempting to get the forward direction of the mesh at all times*/
@@ -70,8 +71,11 @@ public:
 
 	//Shoot
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attack")
-	int AmmoAmount = 10;
+	float AmmoAmount = 10;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attack")
+		float MaxAmmo = 10;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Attack")
 	class USoundBase* FireSound{nullptr};
 
@@ -81,14 +85,30 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerHealth")
 	int HealthAmmount = 100;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerHealth")
-	//	int Health = ;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MaarioFollower")
+	TSubclassOf<AActor> MaarioSpawn;
 
 	void Fire();
 	FVector NewLocation;
 	FRotator NewRotation;
+
+	/** need function that returns int for Taisa to cast from HUD, it should return current health*/
+	/** first tank needs to know if hit
+	 * second thank needs to know what to do whwen hit
+	 * third tank needs to know new health value after hit - it should return this value to int variable
+	 */
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
+	UFUNCTION()
+	int PlayerHealth();
+
+	/** counts times PlayerTanks has been hit*/
+	int NumberHits = 0;
+	
+	//getvectordistance - kismet
 		
+	float ReturnAmmo();
+	float ReturnMaxAmmo();
 private:
 
 	//Movement

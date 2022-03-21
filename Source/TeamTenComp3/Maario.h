@@ -46,6 +46,12 @@ public:
 	UFUNCTION()
 	virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
-	/** bool used to check if Actor (item pickups) are in line of sight*/
+	/** bool to send to MaarioAIController to check if Actor is in range or not*/
+	bool SendInRange();
+
+	/** maxRange of line of sight*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HitDetection")
+	float MaxRangeLineOfSight = 2000;
+
 
 };

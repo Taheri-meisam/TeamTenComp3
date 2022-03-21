@@ -3,6 +3,9 @@
 
 #include "Maario.h"
 #include "Components/SphereComponent.h"
+#include "EnvironmentQuery/EnvQueryTypes.h"
+#include "DrawDebugHelpers.h"
+#include "Kismet/KismetMathLibrary.h" //Vector_Distance to make Maario not 'notice' the pickups indside radius, see Discord from Marcus H
 // Sets default values
 AMaario::AMaario()
 {
@@ -27,7 +30,22 @@ void AMaario::BeginPlay()
 void AMaario::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//bool LineOfSightTo(const class AActor * Other, FVector ViewPoint, bool bAlternateChecks ) const;
+
+	FVector Location = GetActorLocation();
+	FRotator Rotation = GetActorRotation();
+	
+	FVector End = Location + Rotation.Vector() * MaxRangeLineOfSight;
+
+	
+	FHitResult Hit;
+	bool bSuccess = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECollisionChannel::ECC_GameTraceChannel1);
+
+	if (bSuccess)
+	{
+		DrawDebugLine(GetWorld(), Location, End, FColor::Green);
+		//bool LineOfSightTo(const class AActor * Other, FVector ViewPoint, bool bAlternateChecks ) const;
+
+	}
 }
 
 // Called to bind functionality to input
@@ -48,4 +66,16 @@ void AMaario::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 	UE_LOG(LogTemp, Warning, (TEXT("Overlap End!")));
 	InPointingDistance = false;
 	UE_LOG(LogTemp, Warning, (TEXT("InPointingDistance = false")));
+}
+
+bool AMaario::SendInRange()
+{
+	if (InPointingDistance)
+	{
+		return InPointingDistance;
+	}
+	else
+	{
+		return InPointingDistance;
+	}
 }
