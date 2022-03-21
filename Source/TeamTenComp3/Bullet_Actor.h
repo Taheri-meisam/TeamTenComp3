@@ -28,12 +28,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CollisionComponent")
 		class UBoxComponent* CollisionBoxBullet = nullptr;
 
-
 	UPROPERTY(EditAnywhere, Category = "Tree")
 		TSubclassOf<AActor> Tree;
 
+
 	UFUNCTION()
-		void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BulletLocation")
 	FVector NewLocation;
 
