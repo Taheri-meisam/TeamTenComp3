@@ -18,6 +18,13 @@ void AMyAmmoPack::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActo
 	Super::OnOverlapBegin(OverlappedComponent, OtherActor, OtherComp, bFromSweep, bFromSweep, SweepResult);
 
 	UE_LOG(LogTemp, Warning, TEXT("testing 1"));
+	if (OtherActor->IsA(APlayerTank::StaticClass()))
+	{
+		APlayerTank* TempTank;
+		TempTank = Cast<APlayerTank>(OtherActor);
+		TempTank-> AmmoAmount += 10;
+		this->Destroy();
+	}
 	//AmmoAmount = AmmoAmount + 5;
 }
 

@@ -39,9 +39,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "SpawnItem")
 		TSubclassOf<AActor> Health;
 	UFUNCTION()
-		void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
-	void Destroy_Tree();
+
 
 	FVector ActorLocation;
 };

@@ -28,6 +28,7 @@ void AMyHealthPack::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AAc
 		APlayerTank* TempTank;
 		TempTank = Cast<APlayerTank>(OtherActor);
 		TempTank->HealthAmmount -= 10;
+		this->Destroy();
 	}
 }
 
