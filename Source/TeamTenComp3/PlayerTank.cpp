@@ -16,6 +16,8 @@
 #include "Engine/World.h"
 #include "Math/Rotator.h"
 #include "Components/ArrowComponent.h"
+#include "Blueprint/UserWidget.h"
+#include "AmmoWidget.h"
 //#include "GameFramework/PlayerStart.h"
 //#include "Bullet_Actor.h"
 
@@ -158,6 +160,8 @@ void APlayerTank::CameraYaw(float AxisValue)
 	CameraInput.Y = AxisValue;
 }
 
+
+
 void APlayerTank::Fire()
 {
 	if (AmmoAmount > 0) {
@@ -188,3 +192,12 @@ void APlayerTank::Fire()
 	}
 }
 
+float APlayerTank::ReturnAmmo()
+{
+	return AmmoAmount;
+}
+
+float APlayerTank::ReturnMaxAmmo()
+{
+	return MaxAmmo;
+}
