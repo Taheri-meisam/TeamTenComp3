@@ -38,17 +38,17 @@ void AMaario::Tick(float DeltaTime)
 
 	bool bSuccess = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECollisionChannel::ECC_GameTraceChannel1);
 
-	float DistanceToTarget = UKismetMathLibrary::Vector_Distance(GetActorLocation(), End);
+	//float DistanceToTarget = UKismetMathLibrary::Vector_Distance(GetActorLocation(), End);
 
-	if (DistanceToTarget < MaxRangeLineOfSight)
-	{
+	//if (DistanceToTarget < MaxRangeLineOfSight)
+	//{
 		if (bSuccess)
         	{
         		DrawDebugLine(GetWorld(), Location, End, FColor::Green);
         		//bool LineOfSightTo(const class AActor * Other, FVector ViewPoint, bool bAlternateChecks ) const;
         
         	}
-	}
+	//}
 	
 }
 
