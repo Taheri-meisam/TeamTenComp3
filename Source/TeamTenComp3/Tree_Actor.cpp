@@ -14,13 +14,10 @@ ATree_Actor::ATree_Actor()
 	PrimaryActorTick.bCanEverTick = true;
 
 	TreeMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TreeMeshComponent"));
-
-	
-	TreeMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	CollisionBoxTree = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
+    CollisionBoxTree = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
 	CollisionBoxTree->SetBoxExtent(FVector(1.5f, 1.5f, 3.f));
-	CollisionBoxTree->SetWorldScale3D(FVector(1.5f, 1.5f, 3.f));
-	RootComponent = CollisionBoxTree;
+	
+
 
 	//SetRootComponent(CollisionBoxTree);
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>TMesh(TEXT("StaticMesh'/Engine/BasicShapes/Cylinder.Cylinder'"));
@@ -30,7 +27,7 @@ ATree_Actor::ATree_Actor()
 	TreeMesh->SetWorldScale3D(FVector(1.5f, 1.5f, 3.f));
 
 	SetRootComponent(TreeMesh);
-	CollisionBoxTree = CreateDefaultSubobject<UBoxComponent>(TEXT("TreeCollComp"));
+
 	TreeMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 
 }
@@ -39,7 +36,7 @@ ATree_Actor::ATree_Actor()
 void ATree_Actor::BeginPlay()
 {
 	Super::BeginPlay();
-	CollisionBoxTree->OnComponentBeginOverlap.AddDynamic(this, &ATree_Actor::OnOverlap);
+	TreeMesh->OnComponentBeginOverlap.AddDynamic(this, &ATree_Actor::OnOverlap);
 	
 }
 

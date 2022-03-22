@@ -18,30 +18,25 @@ ABullet_Actor::ABullet_Actor()
 
 	BulletMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BulletMeshComponent"));
 
-	//BulletMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	//CollisionBoxBullet = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
-	//CollisionBoxBullet->SetBoxExtent(FVector(0.5f, 0.5f, 0.5f));
-	//
-	//RootComponent = CollisionBoxBullet;
-	//BulletMesh->SetupAttachment(RootComponent);
+	
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>MeshComponent(TEXT("StaticMesh'/Game/Assets/JohannaAssests/TinyBullet.TinyBullet'"));
 
 	if (MeshComponent.Succeeded()) {
 		BulletMesh->SetStaticMesh(MeshComponent.Object);
 	}
-	RootComponent = BulletMesh;
+
 	BulletMesh->SetWorldScale3D(FVector(0.5f, 0.5f, 0.5f));
 	BulletMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 
 
-	BulletMesh->OnComponentBeginOverlap.AddDynamic(this, &ABullet_Actor::OnOverlap);
+	
 }
 
 // Called when the game starts or when spawned
 void ABullet_Actor::BeginPlay()
 {
 	Super::BeginPlay();
-
+	BulletMesh->OnComponentBeginOverlap.AddDynamic(this, &ABullet_Actor::OnOverlap);
 
 }
 
