@@ -15,8 +15,9 @@ class TEAMTENCOMP3_API UHealthWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
-public:
-	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
+
+	/*public:
+	 *virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 
 
 	TWeakObjectPtr<APlayerTank>PlayerTankPtrs;
@@ -30,5 +31,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UserInterface", meta = (BindWidget))
 		class UTextBlock* Progress_Bar_Text_Block;
+		*/
 
 };
