@@ -3,6 +3,7 @@
 
 #include "PlayerTank.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/SceneComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
@@ -92,13 +93,13 @@ void APlayerTank::BeginPlay()
 	Super::BeginPlay();
 
 	//Spawning in Maario with this class -> the class is not specified in OutputLog
-	UWorld* World = GetWorld();
-	FVector MaarioSpot = GetActorLocation();
-	FVector BackwardVector = GetActorForwardVector();
-	BackwardVector.Y *= -100;
-	MaarioSpot += BackwardVector;
-	World->SpawnActor<ACharacter>(MaarioSpawn, MaarioSpot, GetActorRotation());
-	
+    UWorld* World = GetWorld();
+    FVector MaarioSpot = GetActorLocation();
+    FVector BackwardVector = GetActorForwardVector();
+    BackwardVector.Y *= -100;
+    MaarioSpot += BackwardVector;
+    World->SpawnActor<ACharacter>(MaarioSpawn, MaarioSpot, GetActorRotation());
+	//MaarioSpawn->SetupAttachment(MaarioBoom, USpringArmComponent::SocketName);	
 }
 
 // Called every frame

@@ -15,7 +15,6 @@ class TEAMTENCOMP3_API UHealthWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
-<<<<<<< HEAD
 //public:
 //	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 //
@@ -31,24 +30,5 @@ class TEAMTENCOMP3_API UHealthWidget : public UUserWidget
 //
 //	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UserInterface", meta = (BindWidget))
 //		class UTextBlock* Progress_Bar_Text_Block;
-=======
-
-	/*public:
-	 *virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
-
-
-	TWeakObjectPtr<APlayerTank>PlayerTankPtrs;
-
-	void PutNewOwner(APlayerTank* NewPlayerTank) {
-		PlayerTankPtrs = NewPlayerTank;
-	}
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UserInterface", meta = (BindWidget))
-		class UProgressBar* Progress_Bar;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UserInterface", meta = (BindWidget))
-		class UTextBlock* Progress_Bar_Text_Block;
-		*/
->>>>>>> e75f802833f65fa9addefa5c88fd61b79804690b
 
 };

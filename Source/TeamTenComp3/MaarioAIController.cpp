@@ -21,29 +21,21 @@ void AMaarioAIController::Tick(float DeltaTime)
 	
 	//gets player location
 	APawn* PlayerTank = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
-	
+	AAIController::SetFocus(PlayerTank, EAIFocusPriority::Gameplay);
+	MoveToActor(PlayerTank, AcceptanceRadiusMaario);
+
 	if (LineOfSightTo(PlayerTank))
 	{
-		//if InPointingDistance is true, SetFocus
-        // if (&AMaario::InPointingDistance)
-        // {
-        	//sets focus on player
-            AAIController::SetFocus(PlayerTank, EAIFocusPriority::Gameplay);
-			//once player moves outside navmesh Maario stops moving, most likely loses 'sight' of the player and just stops working
-			//not ideal to move into tick, but good enough
-			MoveToActor(PlayerTank, AcceptanceRadiusMaario);
-        	
-        	// if (&AMaario::InPointingDistance)
-        	// {
-        	// 	//clears focus
-        	// 	AAIController::ClearFocus(EAIFocusPriority::Default);
-        	// }
-        //}
+		//sets focus on player
+       
+		//once player moves outside navmesh Maario stops moving, most likely loses 'sight' of the player and just stops working
+		//not ideal to move into tick, but good enough
+		
 	}
-	else
-	{
-		AAIController::ClearFocus(EAIFocusPriority::Default);
-		AAIController::StopMovement();
-	}
+	// else
+	// {
+	// 	AAIController::ClearFocus(EAIFocusPriority::Default);
+	// 	AAIController::StopMovement();
+	// }
 	
 }
