@@ -173,31 +173,39 @@ void APlayerTank::Fire()
 {
 	if (AmmoAmount > 0) {
 		AmmoAmount--;
-		//GEngine->AddOnScreenDebugMessage(-1,12.f, FColor::Black, FString::Printf((TEXT("There is how much ammo is left: %d"))));
-		UWorld* World = GetWorld();
-		if (World) {
-			FVector PlayerLocation = GetActorLocation();
 
+		UWorld* World = GetWorld();
+
+		if (World) {
+
+			FVector PlayerLocation = GetActorLocation();
 			/** Bjorn Joakim suggegsted this addition - adding a forward vector and multiplying it to the location vector*/
 			FVector ForwardVector = GetActorForwardVector();
 			ForwardVector *= 200;
 			PlayerLocation += ForwardVector;
 			/** made a pointer ABullet_Actor, added a variable name and assignment sign*/
 			World->SpawnActor<AActor>(BulletSpawn, PlayerLocation, GetActorRotation());  // AAcor added
-			//bullets are spawned on mesh' X-vector creating an odd effect when shooting in -X direction bullets shoots through mesh //THIS IS NOW FIXED WITH BJ's SUGGESTED ADDITION
-
-
-			//World->SpawnActor<AActor>(BulletSpawn, PlayerLocation + FVector(10.f, 0.f, 0.f), GetActorRotation());  // AAcor added 
-			//bullets are spawned on mesh' X-vector creating an odd effect when shooting in -X direction bullets shoots through mesh
-			//UGameplayStatics::PlaySound2D(World, FireSound, 1.f, 1.f, 0.f, 0.f);
-			
-
 		}
 		if (AmmoAmount == 0) {
 			//no fire
 		}
 	}
 }
+
+void APlayerTank::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	NumberHits++;
+}
+
+int APlayerTank::PlayerHealth()
+{
+	NumberHits *= -20;
+
+	HealthAmmount += NumberHits;
+	
+	return HealthAmmount;
+}
+
 
 float APlayerTank::ReturnAmmo()
 {

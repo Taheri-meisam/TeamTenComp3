@@ -5,7 +5,7 @@
 #include "Components/SphereComponent.h"
 #include "EnvironmentQuery/EnvQueryTypes.h"
 #include "DrawDebugHelpers.h"
-#include "Kismet/KismetMathLibrary.h" //Vector_Distance to make Maario not 'notice' the pickups indside radius, see Discord from Marcus H
+#include "Kismet/KismetMathLibrary.h" //Vector_Distance to make Maario not 'notice' the pickups inside radius, see Discord from Marcus H
 // Sets default values
 AMaario::AMaario()
 {
@@ -54,7 +54,7 @@ void AMaario::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
-void AMaario::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+void AMaario::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherbodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	UE_LOG(LogTemp, Warning, (TEXT("Overlap Begins!")));
 	InPointingDistance = true;
@@ -67,15 +67,16 @@ void AMaario::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 	InPointingDistance = false;
 	UE_LOG(LogTemp, Warning, (TEXT("InPointingDistance = false")));
 }
-//
-// bool AMaario::SendInRange()
-// {
-// 	if (InPointingDistance)
-// 	{
-// 		return InPointingDistance;
-// 	}
-// 	else
-// 	{
-// 		return InPointingDistance;
-// 	}
-// }
+
+bool AMaario::SendInRange()
+{
+	
+	if (InPointingDistance)
+	{
+		return InPointingDistance;
+	}
+	else
+	{
+		return InPointingDistance;
+	}
+}
