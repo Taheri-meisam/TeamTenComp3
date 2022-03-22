@@ -2,10 +2,7 @@
 
 
 #include "PlayerTank.h"
-
-//#include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
-#include "Components/SphereComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
@@ -18,7 +15,6 @@
 #include "Components/ArrowComponent.h"
 #include "Engine/EngineTypes.h"
 #include "Components/PrimitiveComponent.h"
-#include "GameFramework/Character.h"
 
 //#include "GameFramework/PlayerStart.h"
 //#include "Bullet_Actor.h"
@@ -29,29 +25,24 @@ APlayerTank::APlayerTank()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
-	//set SphereComponent to Root
-	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
-	Sphere->SetupAttachment(RootComponent);
-	Sphere->OnComponentHit.AddDynamic(this, &APlayerTank::OnHit);
 	
 	//set mesh to Root
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	//StaticMesh'/Engine/BasicShapes/Cube.Cube'
-	//StaticMesh'/Engine/BasicShapes/Cube.Cube'
-	SetRootComponent(Mesh);
+		SetRootComponent(Mesh);
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> Sheep(TEXT("StaticMesh'/Game/Assets/JohannaAssests/Bullet.Bullet'"));
     if (Sheep.Succeeded())
     {
 	    Mesh->SetStaticMesh(Sheep.Object);
     }
 
+	//attach SphereComponent to Root
+	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
+	Sphere->SetupAttachment(Mesh);
+	Sphere->OnComponentHit.AddDynamic(this, &APlayerTank::OnHit);
+
+	//Arrow component
 	Arrow = CreateDefaultSubobject<UArrowComponent>(TEXT("Arrow"));
 	Arrow->SetupAttachment(Mesh);
-
-	//Mesh->SetupAttachment(RootComponent);
-
-	Mesh->SetupAttachment(RootComponent);
 
 	//Set boom to Root
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
@@ -97,7 +88,11 @@ void APlayerTank::BeginPlay()
 
 	//Spawning in Maario with this class -> the class is not specified in OutputLog
 	UWorld* World = GetWorld();
-	World->SpawnActor<AActor>(MaarioSpawn, GetActorLocation(), GetActorRotation());
+	FVector MaarioSpot = GetActorLocation();
+	FVector BackwardVector = GetActorForwardVector();
+	BackwardVector.Y *= -100;
+	MaarioSpot += BackwardVector;
+	World->SpawnActor<ACharacter>(MaarioSpawn, MaarioSpot, GetActorRotation());
 	
 }
 

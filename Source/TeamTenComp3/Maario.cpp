@@ -67,15 +67,15 @@ void AMaario::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 	InPointingDistance = false;
 	UE_LOG(LogTemp, Warning, (TEXT("InPointingDistance = false")));
 }
-
-bool AMaario::SendInRange()
-{
-	if (InPointingDistance)
-	{
-		return InPointingDistance;
-	}
-	else
-	{
-		return InPointingDistance;
-	}
-}
+//
+// bool AMaario::SendInRange()
+// {
+// 	if (InPointingDistance)
+// 	{
+// 		return InPointingDistance;
+// 	}
+// 	else
+// 	{
+// 		return InPointingDistance;
+// 	}
+// }

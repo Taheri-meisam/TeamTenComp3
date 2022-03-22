@@ -32,17 +32,9 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Sphere")
 	class USphereComponent* Sphere{ nullptr };
 
-
 	/**Attempting to get the forward direction of the mesh at all times*/
 	UPROPERTY(VisibleAnywhere, Category = "Arrow")
 	class UArrowComponent* Arrow{nullptr};
-
-	//UPROPERTY(VisibleAnywhere, Category = "Sphere")
-	//class USphereComponent* Sphere{ nullptr };
-
-	//UPROPERTY(VisibleAnywhere, Category = "Sphere")
-	//class USphereComponent* Sphere{ nullptr };
-
 
 	/**Mesh component*/
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
@@ -83,7 +75,7 @@ public:
 	int HealthAmmount = 100;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MaarioFollower")
-	TSubclassOf<AActor> MaarioSpawn;
+	TSubclassOf<ACharacter> MaarioSpawn;
 
 	void Fire();
 	FVector NewLocation;
@@ -94,6 +86,7 @@ public:
 	 * second thank needs to know what to do whwen hit
 	 * third tank needs to know new health value after hit - it should return this value to int variable
 	 */
+	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
 	UFUNCTION()
