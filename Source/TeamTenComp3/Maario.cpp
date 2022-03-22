@@ -33,19 +33,23 @@ void AMaario::Tick(float DeltaTime)
 
 	FVector Location = GetActorLocation();
 	FRotator Rotation = GetActorRotation();
-	
 	FVector End = Location + Rotation.Vector() * MaxRangeLineOfSight;
-
-	
 	FHitResult Hit;
+
 	bool bSuccess = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECollisionChannel::ECC_GameTraceChannel1);
 
-	if (bSuccess)
-	{
-		DrawDebugLine(GetWorld(), Location, End, FColor::Green);
-		//bool LineOfSightTo(const class AActor * Other, FVector ViewPoint, bool bAlternateChecks ) const;
+	float DistanceToTarget = UKismetMathLibrary::Vector_Distance(GetActorLocation(), End);
 
+	if (DistanceToTarget < MaxRangeLineOfSight)
+	{
+		if (bSuccess)
+        	{
+        		DrawDebugLine(GetWorld(), Location, End, FColor::Green);
+        		//bool LineOfSightTo(const class AActor * Other, FVector ViewPoint, bool bAlternateChecks ) const;
+        
+        	}
 	}
+	
 }
 
 // Called to bind functionality to input
