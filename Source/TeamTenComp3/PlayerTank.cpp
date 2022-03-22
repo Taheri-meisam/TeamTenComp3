@@ -15,7 +15,8 @@
 #include "Components/ArrowComponent.h"
 #include "Engine/EngineTypes.h"
 #include "Components/PrimitiveComponent.h"
-
+#include "Blueprint/UserWidget.h"
+#include "AmmoWidget.h"
 //#include "GameFramework/PlayerStart.h"
 //#include "Bullet_Actor.h"
 
@@ -25,7 +26,11 @@ APlayerTank::APlayerTank()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	
+
+	//set SphereComponent to Root
+	//Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
+	//SetRootComponent(Sphere);
+
 	//set mesh to Root
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 		SetRootComponent(Mesh);
@@ -162,6 +167,8 @@ void APlayerTank::CameraYaw(float AxisValue)
 	CameraInput.Y = AxisValue;
 }
 
+
+
 void APlayerTank::Fire()
 {
 	if (AmmoAmount > 0) {
@@ -192,22 +199,24 @@ void APlayerTank::Fire()
 	}
 }
 
-void APlayerTank::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+float APlayerTank::ReturnAmmo()
 {
-	NumberHits++;
-	
-	UE_LOG(LogTemp, Warning, TEXT("Player is Hit! %d"), NumberHits);
+	return AmmoAmount;
 }
 
-int APlayerTank::PlayerHealth()
+float APlayerTank::ReturnMaxAmmo()
 {
-	int Health;
-
-	Health = NumberHits * -20;
-
-	Health = HealthAmmount - Health;
-	
-	return Health;
+	return MaxAmmo;
 }
 
+void APlayerTank::SwitchLevel(FName LevelName) {
+	UWorld* World = GetWorld();
+	if (World) {
+		FString CurrentLevel = World->GetMapName();
 
+		FName CurrentLevelName(CurrentLevel);
+		if (CurrentLevelName != LevelName) {
+			UGameplayStatics::OpenLevel(World, LevelName);
+		}
+	}
+}

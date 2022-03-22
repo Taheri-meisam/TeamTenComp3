@@ -6,7 +6,6 @@
 #include "GameFramework/PlayerController.h"
 #include "PlayerTank.h"
 #include "TeamTenComp3GameModeBase.h"
-#include "TeamTenComp3GameModeBase.h"
 #include "Blueprint/UserWidget.h"
 #include "TankPlayerController.generated.h"
 
@@ -33,7 +32,7 @@ public:
 		TSubclassOf<class UUserWidget>HUDOverlayAsset;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
-	UUserWidget* HUDOverlay;
+	UUserWidget* HUDOverlay=nullptr;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,  Category = "Widgets")
 	TSubclassOf<UUserWidget> W_Ammo;

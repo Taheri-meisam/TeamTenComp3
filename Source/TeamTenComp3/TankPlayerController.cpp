@@ -2,6 +2,7 @@
 
 
 #include "TankPlayerController.h"
+#include "PlayerTank.h"
 #include "Blueprint/UserWidget.h"
 
 

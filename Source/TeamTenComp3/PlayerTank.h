@@ -63,8 +63,11 @@ public:
 
 	//Shoot
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attack")
-	int AmmoAmount = 10;
+	float AmmoAmount = 10;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attack")
+		float MaxAmmo = 10;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Attack")
 	class USoundBase* FireSound{nullptr};
 
@@ -97,6 +100,8 @@ public:
 	
 	//getvectordistance - kismet
 		
+	float ReturnAmmo();
+	float ReturnMaxAmmo();
 private:
 
 	//Movement
@@ -112,6 +117,7 @@ private:
 	//vector for camera pitch and yaw
 	FVector2D CameraInput;
 	
-	
+public:
+	void SwitchLevel(FName LevelName);
 	
 };
